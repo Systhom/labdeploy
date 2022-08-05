@@ -15,6 +15,7 @@ La configuration par défaut est la suivante :
 - Autorisation de la connexion via root en SSH 
 
 Pour toutes configuration supplémentaires, les ajouter dans bootstrap.sh
+
 Pour ajouter des VMs supplémentaires, modifier le Vagrantfile et ajouter des lignes : 
 
-{ :hostname => 'node2', :ip => '192.168.56.202', :box => 'debian/bullseye64', :ram => 1024 },
+```{ :hostname => 'node2', :ip => '192.168.56.202', :box => 'debian/bullseye64', :ram => 1024 },```

@@ -36,8 +36,8 @@ alias grep='grep --color=auto'
 
 # ajout des couleurs pour les logs
 cless() { ccze -A < \$1 | less -R; }
-ctail() { ccze -A < \$1 | tail $2; }
-ccat() { ccze -A < \$1 | cat $2; }
+ctail() { ccze -A < \$1 | tail \$2; }
+ccat() { ccze -A < \$1 | cat \$2; }
 
 # affichage sympathique de la ligne de commande
 PS1="[\t] \[\e[01;94m\]\u@\h\[\e[00m\]:\[\e[01;91m\]\w\[\e[00m\]\$ "

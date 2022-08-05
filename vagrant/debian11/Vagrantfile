@@ -1,0 +1,24 @@
+nodes = [
+  { :hostname => 'node1', :ip => '192.168.56.201', :box => 'debian/bullseye64', :ram => 1024 },
+  { :hostname => 'node2', :ip => '192.168.56.202', :box => 'debian/bullseye64', :ram => 1024 },
+]
+
+Vagrant.configure("2") do |config|
+  nodes.each do |node|
+	config.vm.provision :shell, path: "bootstrap.sh"
+    config.vm.define node[:hostname] do |nodeconfig|
+      nodeconfig.vm.box = "debian/bullseye64"
+      nodeconfig.vm.hostname = node[:hostname] + ".box"
+      nodeconfig.vm.network :private_network, ip: node[:ip]
+
+      memory = node[:ram] ? node[:ram] : 256;
+      nodeconfig.vm.provider :virtualbox do |vb|
+        vb.customize [
+          "modifyvm", :id,
+          "--cpuexecutioncap", "50",
+          "--memory", memory.to_s,
+        ]
+      end 
+	end
+end
+end
